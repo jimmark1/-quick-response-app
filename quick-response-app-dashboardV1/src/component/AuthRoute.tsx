@@ -15,18 +15,18 @@ const AuthRoute: React.FunctionComponent<IAuthRouteProps> = (props) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   const AuthCheck = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       setLoading(false);
-  //     } else {
-  //       console.log("unauthorized");
-  //       navigate("/login");
-  //     }
-  //   });
+  useEffect(() => {
+    const AuthCheck = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoading(false);
+      } else {
+        console.log("unauthorized");
+        navigate("/login");
+      }
+    });
 
-  //   return () => AuthCheck();
-  // }, [auth]);
+    return () => AuthCheck();
+  }, [auth]);
 
   if (loading) return <CircularProgress />;
 
